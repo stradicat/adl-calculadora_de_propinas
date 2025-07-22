@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Calculadora de Propinas</string>
+    <string name="iv_restaurantLogo">Restaurant logo</string>
+    <string name="tv_calcPropina">Calculadora de Propina</string>
+    <string name="et_valorCuenta">Valor de la Cuenta: $</string>
+    <string name="et_propina">Propina: %</string>
+    <string name="tv_propinaRapida">Propina Rápida</string>
+    <string name="btn_10">10%</string>
+    <string name="btn_15">15%</string>
+    <string name="btn_20">20%</string>
 </resources>
