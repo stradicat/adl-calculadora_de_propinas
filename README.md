@@ -33,7 +33,7 @@ app/src/main/res/layout/
 - [x] Validar que el monto ingresado sea válido
 - [x] Permitir propinas personalizadas
 - [x] Guardar la preferencia de porcentaje usando SharedPreferences
-- [] Agregar animaciones suaves
+- [ ] Agregar animaciones suaves
 
 ## Consideraciones personales
 
