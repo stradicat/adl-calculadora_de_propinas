@@ -7,9 +7,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import dev.dmayr.calculadoradepropinas.databinding.ActivityMainBinding
 
-private lateinit var binding: ActivityMainBinding
-
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
