@@ -1,9 +1,12 @@
 package dev.dmayr.calculadoradepropinas
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
@@ -12,11 +15,19 @@ import dev.dmayr.calculadoradepropinas.viewModel.CalculadoraViewModel
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        private const val PREFERENCIAS = "prefs_calculadora"
+        private const val KEY_PORCENTAJE_PROPINA = "porcentaje_propina"
+    }
+
     private lateinit var binding: ActivityMainBinding
     private val calcViewModel by viewModels<CalculadoraViewModel>()
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        sharedPreferences = getSharedPreferences(PREFERENCIAS, Context.MODE_PRIVATE)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
@@ -27,10 +38,19 @@ class MainActivity : AppCompatActivity() {
         setupObservers()
         setupListeners()
 
+        restaurarPorcentaje()
+
         ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+    }
+
+    private fun restaurarPorcentaje() {
+        val porcentajeGuardado = sharedPreferences.getInt(KEY_PORCENTAJE_PROPINA, 0)
+        if (porcentajeGuardado > 0) {
+            binding.etPorcentajePropina.setText(porcentajeGuardado.toString())
         }
     }
 
@@ -57,6 +77,13 @@ class MainActivity : AppCompatActivity() {
         binding.etPorcentajePropina.addTextChangedListener { editablePorcPropina ->
             val porcentaje = editablePorcPropina.toString().toIntOrNull() ?: 0
             calcViewModel.actualizarPorcentajePropina(porcentaje)
+            guardarPorcentaje(porcentaje)
+        }
+    }
+
+    private fun guardarPorcentaje(porcentaje: Int) {
+        sharedPreferences.edit {
+            putInt(KEY_PORCENTAJE_PROPINA, porcentaje)
         }
     }
 
