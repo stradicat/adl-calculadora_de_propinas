@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/logo_restaurant"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
         android:contentDescription="@string/iv_restaurantLogo"
@@ -55,13 +55,13 @@
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/dm_serif_text"
         android:hint="@string/et_valorCuenta"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:padding="8dp"
-        android:textAlignment="viewEnd"
+        android:textAlignment="textEnd"
         android:textSize="20sp"
 
         app:layout_constraintEnd_toEndOf="@+id/tv_tituloApp"
@@ -93,7 +93,7 @@
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:padding="8dp"
-        android:textAlignment="viewEnd"
+        android:textAlignment="textEnd"
         android:textSize="20sp"
 
         app:layout_constraintEnd_toEndOf="@+id/et_valorCuenta"
@@ -160,9 +160,9 @@
         android:id="@+id/tv_titTotalCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/dm_serif_display"
         android:text="Total:"
-        android:layout_marginStart="8dp"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_TotalCuenta"
         app:layout_constraintEnd_toStartOf="@+id/tv_TotalCuenta"
@@ -171,10 +171,42 @@
         app:layout_constraintTop_toTopOf="@+id/tv_TotalCuenta" />
 
     <TextView
+        android:id="@+id/tv_titTotalPropina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/dm_serif_display"
+        android:text="Propina:"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_TotalPropina"
+        app:layout_constraintEnd_toStartOf="@+id/tv_TotalPropina"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/iv_porcentaje"
+        app:layout_constraintTop_toTopOf="@+id/tv_TotalPropina" />
+
+    <TextView
+        android:id="@+id/tv_TotalPropina"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/dm_serif_text"
+        android:hint="$"
+        android:textAlignment="viewEnd"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_TotalCuenta"
+        app:layout_constraintEnd_toEndOf="@+id/et_porcentajePropina"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_titTotalPropina"
+        app:layout_constraintStart_toStartOf="@+id/et_porcentajePropina"
+        app:layout_constraintTop_toBottomOf="@+id/et_porcentajePropina"
+        tools:hint="$1.000" />
+
+    <TextView
         android:id="@+id/tv_TotalCuenta"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/dm_serif_text"
         android:hint="$"
         android:textAlignment="viewEnd"
