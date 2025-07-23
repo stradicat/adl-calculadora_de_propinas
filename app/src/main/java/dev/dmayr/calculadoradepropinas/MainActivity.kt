@@ -16,32 +16,16 @@ class MainActivity : AppCompatActivity() {
     private val calcViewModel by viewModels<CalculadoraViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
 
-        super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-        /*-------------------------------------------------------------------*/
-        val btn10 = binding.btnPropina10
-        val btn15 = binding.btnPropina15
-        val btn20 = binding.btnPropina20
-        /*-------------------------------------------------------------------*/
-
         setContentView(view)
 
         setupObservers()
         setupListeners()
-
-        btn10.setOnClickListener {
-            binding.etPorcentajePropina.setText("10")
-        }
-        btn15.setOnClickListener {
-            binding.etPorcentajePropina.setText("15")
-        }
-        btn20.setOnClickListener {
-            binding.etPorcentajePropina.setText("20")
-        }
 
         ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -51,42 +35,52 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        binding.etValorCuenta.addTextChangedListener { editable ->
-            val valor = editable.toString().toIntOrNull() ?: 0
+        binding.btnPropina10.setOnClickListener {
+            binding.etPorcentajePropina.setText(10.toString())
+        }
+        binding.btnPropina15.setOnClickListener {
+            binding.etPorcentajePropina.setText(15.toString())
+        }
+        binding.btnPropina20.setOnClickListener {
+            binding.etPorcentajePropina.setText(20.toString())
+        }
+        binding.btnBorrarTodo.setOnClickListener {
+            binding.etPorcentajePropina.setText("")
+            binding.etValorCuenta.setText("")
+        }
+
+        binding.etValorCuenta.addTextChangedListener { editableCuenta ->
+            val valor = editableCuenta.toString().toIntOrNull() ?: 0
             calcViewModel.actualizarValorCuenta(valor)
         }
 
-        binding.etPorcentajePropina.addTextChangedListener { editable ->
-            val porcentaje = editable.toString().toIntOrNull() ?: 0
+        binding.etPorcentajePropina.addTextChangedListener { editablePorcPropina ->
+            val porcentaje = editablePorcPropina.toString().toIntOrNull() ?: 0
             calcViewModel.actualizarPorcentajePropina(porcentaje)
         }
     }
 
     private fun setupObservers() {
-        calcViewModel.valorCuenta.observe(this) { valor ->
-            val valorStr = valor?.toString() ?: ""
+        calcViewModel.valorCuenta.observe(this) { valorCuenta ->
+            val valorStr = if (valorCuenta == 0) "" else valorCuenta.toString()
             if (binding.etValorCuenta.text.toString() != valorStr) {
                 binding.etValorCuenta.setText(valorStr)
             }
         }
-        calcViewModel.porcentajePropina.observe(this) { valor ->
-            val valorStr = valor?.toString() ?: ""
+        calcViewModel.porcentajePropina.observe(this) { valorPorcentajePropina ->
+            val valorStr =
+                if (valorPorcentajePropina == 0) "" else valorPorcentajePropina.toString()
             if (binding.etPorcentajePropina.text.toString() != valorStr) {
                 binding.etPorcentajePropina.setText(valorStr)
             }
         }
-        calcViewModel.totalPropina.observe(this) { valor ->
-            val valorStr = valor?.toString() ?: ""
-            if (binding.tvTotalPropina.text.toString() != valorStr) {
-                binding.tvTotalPropina.text = valorStr
-            }
+        calcViewModel.totalPropina.observe(this) { valorTotalPropina ->
+            val valorStr = if (valorTotalPropina == 0) "" else "$ $valorTotalPropina"
+            binding.tvTotalPropina.text = valorStr
         }
-        calcViewModel.totalCuenta.observe(this) { valor ->
-            val valorStr = valor?.toString() ?: ""
-            if (binding.tvTotalCuenta.text.toString() != valorStr) {
-                binding.tvTotalCuenta.text = valorStr
-            }
+        calcViewModel.totalCuenta.observe(this) { valorTotalCuenta ->
+            val valorStr = if (valorTotalCuenta == 0) "" else "$ $valorTotalCuenta"
+            binding.tvTotalCuenta.text = valorStr
         }
-
     }
 }
