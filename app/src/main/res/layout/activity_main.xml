@@ -211,7 +211,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_titTotalPropina"
         app:layout_constraintStart_toStartOf="@+id/et_porcentajePropina"
-        app:layout_constraintTop_toBottomOf="@+id/et_porcentajePropina"
         tools:hint="$1.000"
         tools:ignore="HardcodedText" />
 
@@ -219,7 +218,7 @@
         android:id="@+id/tv_TotalCuenta"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="64dp"
         android:fontFamily="@font/dm_serif_text"
         android:hint="$"
         android:textAlignment="viewEnd"
