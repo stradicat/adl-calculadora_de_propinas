@@ -9,22 +9,38 @@ class CalculadoraViewModel : ViewModel() {
 
     private val calcUtils: CalculadoraUtils = CalculadoraUtils()
 
-    private val _valorCuenta = MutableLiveData<Double>()
-    val valorCuenta: LiveData<Double> = _valorCuenta
+    private val _valorCuenta = MutableLiveData<Int>()
+    val valorCuenta: LiveData<Int> = _valorCuenta
 
-    private val _porcentajePropina = MutableLiveData<Double>()
-    private val porcentajePropina: LiveData<Double> = _porcentajePropina
+    private val _porcentajePropina = MutableLiveData<Int>()
+    val porcentajePropina: LiveData<Int> = _porcentajePropina
 
-    private val _totalCuenta = MutableLiveData<Double>()
-    private val totalCuenta: LiveData<Double> = _totalCuenta
+    private val _totalPropina = MutableLiveData<Int>()
+    val totalPropina: LiveData<Int> = _totalPropina
+
+    private val _totalCuenta = MutableLiveData<Int>()
+    val totalCuenta: LiveData<Int> = _totalCuenta
 
 
-    private fun actualizarDatos(valCuenta: Double, porcPropina: Double, totCuenta: Double) {
-        _valorCuenta.value = valCuenta
-        _porcentajePropina.value = porcPropina
-        _totalCuenta.value = calcUtils.calcularPropina(
-            totCuenta,
-            porcPropina
-        )
+    fun actualizarValorCuenta(valor: Int) {
+        _valorCuenta.value = valor
+        recalcular()
+    }
+
+    fun actualizarPorcentajePropina(porcentaje: Int) {
+        _porcentajePropina.value = porcentaje
+        recalcular()
+    }
+
+    private fun recalcular() {
+        val valor: Int = _valorCuenta.value ?: 0
+        val porcentaje: Int = _porcentajePropina.value ?: 0
+
+        val propina = if (valor > 0 && porcentaje > 0) {
+            calcUtils.calcularPropina(valor, porcentaje)
+        } else 0
+
+        _totalPropina.value = propina
+        _totalCuenta.value = valor + propina
     }
 }
