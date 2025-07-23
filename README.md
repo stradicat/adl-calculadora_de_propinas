@@ -11,11 +11,11 @@ propina seleccionado.
 
 ## Funcionalidades Requeridas
 
-[x] Campo de entrada para el monto total
-[x] Selector de porcentaje de propina (10%, 15%, 20%)
-[x] Mostrar el monto de la propina calculado
-[x] Mostrar el total final (cuenta + propina)
-[x] Botón para limpiar los campos
+- [x] Campo de entrada para el monto total
+- [x] Selector de porcentaje de propina (10%, 15%, 20%)
+- [x] Mostrar el monto de la propina calculado
+- [x] Mostrar el total final (cuenta + propina)
+- [x] Botón para limpiar los campos
 
 ## Estructura de Archivos
 
@@ -30,10 +30,10 @@ app/src/main/res/layout/
 
 ## Retos Adicionales
 
-[x] Validar que el monto ingresado sea válido
-[x] Permitir propinas personalizadas
-[x] Guardar la preferencia de porcentaje usando SharedPreferences
-[] Agregar animaciones suaves
+- [x] Validar que el monto ingresado sea válido
+- [x] Permitir propinas personalizadas
+- [x] Guardar la preferencia de porcentaje usando SharedPreferences
+- [] Agregar animaciones suaves
 
 ## Consideraciones personales
 
