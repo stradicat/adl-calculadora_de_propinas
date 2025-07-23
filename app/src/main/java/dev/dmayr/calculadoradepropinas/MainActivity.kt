@@ -17,6 +17,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        /*-------------------------------------------------------------------*/
+        val etValorCuenta = binding.etValorCuenta
+        val etPorcentajePropina = binding.etPorcentajePropina
+        val etTotalCuenta = binding.tvTotalCuenta
+
+        val btn10 = binding.btnPropina10
+        val btn15 = binding.btnPropina15
+        val btn20 = binding.btnPropina20
+        /*-------------------------------------------------------------------*/
+
         setContentView(view)
 
         ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
